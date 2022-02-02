@@ -32,9 +32,12 @@ workflows:
   build:
     jobs:
       - verify-mongo-connection
-      # - cypress/run:
-      #     executor: with-mongo
-      #     start: npm test
-      #     # no need to save the workspace after this job
-      #     no-workspace: true
+      - cypress/run:
+          executor: with-mongo
+          start: npm test
+          # no need to save the workspace after this job
+          no-workspace: true
+          environment: 
+            MONGODB_URI: mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@localhost:27017/?authSource=admin
+
 
